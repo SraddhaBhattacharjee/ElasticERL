@@ -1,8 +1,8 @@
-package Assignment3_Final;
+package Assignment3;
 
 import java.util.Objects;
 
-import Assignment3_Final.Hashmap.LinkedList.Node;
+import Assignment3.Hashmap.LinkedList.Node;
 
 public class Hashmap {
 
@@ -24,7 +24,7 @@ public class Hashmap {
 			
 			public Node(long id, String value, Node next) {
 				this.hospID = id;
-				this.stuData = value;
+				this.hospData = value;
 				this.next = next;
 			}
 		}
@@ -62,7 +62,7 @@ public class Hashmap {
 		public void displayContents() {
 			Node temp = this.head;
 			while(temp != null) {
-				System.out.print(temp.hospID + " " + temp.stuData);
+				System.out.print(temp.hospID + " " + temp.hospData);
 				if(temp.next != null) { System.out.print(","); }
 				temp = temp.next;
 			}
@@ -141,6 +141,10 @@ public class Hashmap {
 	private int capacity; 
 	private int size;
 	
+	public int getSize() {
+		return size;
+	}
+
 	public Hashmap() {
 		capacity = 1000;
 		list = new LinkedList[capacity];
@@ -227,7 +231,7 @@ public class Hashmap {
 			if(matchingData == null) {
 				return null;
 			}
-			return matchingData.stuData;
+			return matchingData.hospData;
 		}
 	}
 	

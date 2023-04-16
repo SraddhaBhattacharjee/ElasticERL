@@ -1,6 +1,7 @@
-package Assignment3_Final;
+package Assignment3;
 
 import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,56 +14,93 @@ public class Driver {
 	
 	private static String RandomHospData() {
 		String[] data = new String[] {
-				"John Henry - 40198765",
-				"Sam Philip - 40194387",
-				"Ema Mill - 40196963",
-				"Catherine Johnathon - 40194837",
-				"Andrea Jhonny - 40198274"
+				"12345678",
+				"87654321",
+				"12121212",
+				"88888888",
+				"66666666",
+				"98765432",
+				"55555555",
+				"99999999",
+				"78787878",
+				"45455445"
 		};
 		Random rnd = new Random();
-		int randomIndex = rnd.nextInt(9)%5;
+		int randomIndex = rnd.nextInt(49)%10;
 		return data[randomIndex];
 	}
 	
 	
 	public static void main(String[] args) {
 		try {
-			String filePath = "NASTAFiles/custom_test_file5.txt";
+			
+			// Using benchmark file
+			String filePath = "C:\\Users\\msais\\Desktop\\Concordia\\PPS\\Assignment 3\\Comp648_W23_Assg3_Needed_Files\\EHITS_test_files\\EHITS_test_file3.txt";
 			Scanner sc = new Scanner(new FileInputStream(filePath));
+			
 			Path file = Paths.get(filePath);
+			
+			// Determining input size ElasticERL
 			int noOfEntries = (int) Files.lines(file).count();
+			
+			System.out.println("The file has " + noOfEntries + " entries.");
 			
 			ElasticERL ERL1 = new ElasticERL(noOfEntries+1);
 			while(sc.hasNextLong()) {
 				ERL1.add(sc.nextLong(), RandomHospData());
 			}
 			
+			System.out.println("The Elastic ERL has " + ERL1.getSize() + " elements");
+			
+			System.out.println("\n==========================================================================\n");
+			Scanner scan = new Scanner(System.in);
+			
+			
+			System.out.println("Enter a EIN number to add to the Elastic ERL");
+			String userInputEIN = scan.next();
+			System.out.println("Generating new key for the input EIN value");
+			int newKey = ERL1.generate();
+			System.out.println("Generated key for your input is " + newKey);
+			ERL1.add(newKey,userInputEIN);
+			System.out.println("Value added for the new key is => " + ERL1.getValues(newKey));
+			
+			System.out.println("Successfully added the new key: "+ newKey + " ==> " +ERL1.getValues(newKey)); 
+			
 			System.out.println("\n==========================================================================\n");
 			
-			int newKey = ERL1.generate();
-			ERL1.add(newKey, RandomHospData());
-			System.out.println("After adding getVal for "+ newKey + " ==> " +ERL1.getValues(newKey)); 
+			System.out.println("Printing previous and next values of the new generated key " + newKey);
+			
 			System.out.println("Prev Key of "+ newKey + " ==> " +ERL1.prevKey(newKey));
 			System.out.println("Next Key of "+ newKey + " ==> " +ERL1.nextKey(newKey));
-			long[] allKeys = ERL1.allKeys();
-			System.out.println("get first 10 keys from " + allKeys.length + " keys ==> ");
-			for(int i=0; i<10; i++) {
-				System.out.println(String.format("%08d", allKeys[i]));
-			}
-			ERL1.remove(newKey);
-			System.out.println("After removing getVal for "+ newKey + " ==> " +ERL1.getValues(newKey)); 
 			
-			System.out.println("Enter two keys to find the keys between that range :");
-			Scanner scan = new Scanner(System.in);
+			System.out.println("\n==========================================================================\n");
+			
+			
+//			long[] allKeys = ERL1.allKeys();
+//			System.out.println("get first 10 keys from " + allKeys.length + " keys ==> ");
+//			for(int i=0; i<10; i++) {
+//				System.out.println(String.format("%08d", allKeys[i]));
+//			}
+			
+			System.out.println("Now removing the new generated key + " + newKey);
+			ERL1.remove(newKey);
+			System.out.println("Successfully removed "+ newKey + " ==> " +ERL1.getValues(newKey)); 
+			
+			System.out.println("\n==========================================================================\n");
+			
+			System.out.println("Demonstrating Range functionality");
+			System.out.println("Enter the lower range key");
 			int key1 = scan.nextInt();
+			System.out.println("Enter the upper range key");
 			int key2 = scan.nextInt();
 			long[] rangeKeys = ERL1.rangeKey(key1, key2);	
-			System.out.println("rangeKey "+key1+" to "+key2);
+			System.out.println("Entered range is from "+key1+" to "+key2);
 			if(rangeKeys!=null) {
 				int endIndex;
-				if(rangeKeys.length > 10) { endIndex = 10; }
-				else { endIndex = rangeKeys.length; }
-				System.out.println("Showing first "+endIndex+" keys from " + rangeKeys.length + " keys ==> ");
+				//if(rangeKeys.length > 10) { endIndex = 10; }
+				//else { endIndex = rangeKeys.length; }
+				endIndex = rangeKeys.length;
+				System.out.println("Showing from keys from "+key1+" to "+key2);
 
 				for(int i=0; i<endIndex; i++) {
 					System.out.println(String.format("%08d", rangeKeys[i]));
