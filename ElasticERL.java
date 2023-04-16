@@ -23,7 +23,7 @@ public class ElasticERL {
 
 	private int size = 0;
 	
-	public ElasticERL(int size) {
+	public ElasticERL(int size) throws Exception {
 		hashMap = new Hashmap();
 		SetEINThreshold(size);
 		if(size >= 100000) { 
@@ -44,9 +44,17 @@ public class ElasticERL {
 	 * @param size
 	 * @return void
 	 */
-	public void SetEINThreshold(int size) { // O(1)
-		this.thresholdValue = size;
+	public void SetEINThreshold(int size) throws Exception {
+		try {
+			if (size < 100) {
+				throw new Exception("Size should be greater than or equal to 100.");
+			}
+			this.thresholdValue = size;
+		} catch (Exception ex) {
+			System.out.println("Error: " + ex.getMessage());
+		}
 	}
+
 	
 	/**
 	 * This method generates an 8 digit random unique key
