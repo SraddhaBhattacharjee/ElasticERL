@@ -45,14 +45,11 @@ public class ElasticERL {
 	 * @return void
 	 */
 	public void SetEINThreshold(int size) throws Exception {
-		try {
+
 			if (size < 100) {
 				throw new Exception("Size should be greater than or equal to 100.");
 			}
-			this.thresholdValue = size;
-		} catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
-		}
+		
 	}
 
 	

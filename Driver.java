@@ -36,8 +36,8 @@ public class Driver {
 			
 			// Using benchmark file
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file5_array_1002.txt";
-			String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file4_AVL_100001.txt";
-			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file3_1261_array.txt";
+			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file4_AVL_100001.txt";
+			String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file3_1261_array.txt";
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file2_88_Array.txt";
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file1_61_Array.txt";
 			Scanner sc = new Scanner(new FileInputStream(filePath));
