@@ -49,6 +49,7 @@ public class ElasticERL {
 			if (size < 100) {
 				throw new Exception("Size should be greater than or equal to 100.");
 			}
+			thresholdValue = size;
 		
 	}
 
@@ -69,7 +70,7 @@ public class ElasticERL {
 	}
 	
 	/**
-	 * This method fetches all the keys in a sorted order using ether avl tree, merge sort or quick sort depending on the size of input
+	 * This method fetches all the keys in a sorted order using either avl tree, merge sort or quick sort depending on the size of input
 	 * 
 	 * @param nil
 	 * @return array of long
