@@ -22,24 +22,26 @@ public class ElasticERL {
 	}
 
 	private int size = 0;
+	private int arraySize;
 	
 	public ElasticERL(int size) throws Exception {
 		hashMap = new Hashmap();
-		SetEINThreshold(size);
-		if(size >= 100000) { 
-			System.out.println("As size is " + size + " , we are storing data in AVL Tree");
+		this.arraySize = size;
+		SetEINThreshold(this.arraySize);
+		if(this.arraySize >= 100000) { 
+			System.out.println("As size is " + this.arraySize + " , we are storing data in AVL Tree");
 			avlTree = new AVLNode();
 		}
 
 		else { 
-			System.out.println("As size is " + size + " , we are storing data in Array & using Merge Sort");
-			hospList = new long[size];
+			System.out.println("As size is " + this.arraySize + " , we are storing data in Array & using Merge Sort");
+			hospList = new long[this.arraySize];
 		}
 		
 	}
 	
 	/**
-	 * This method sets the ERL threshhold value
+	 * This method sets the ERL threshold value
 	 * 
 	 * @param size
 	 * @return void
@@ -100,10 +102,17 @@ public class ElasticERL {
 			}
 			else {
 				//System.out.println(size);
-				hospList[size] = key; // O(1)
+				if (this.size >= this.arraySize) {
+					long[] temp = new long[this.arraySize*2];
+					for(int i = 0; i<this.size;i++) {
+						temp[i] = hospList[i];
+					}
+					this.hospList = temp;
+				}
+				hospList[this.size] = key; // O(1)
 			}
 			//System.out.println(size);
-			size++;
+			this.size++;
 		}
 		else {
 			//System.out.println(key + " already exists");
@@ -184,6 +193,7 @@ public class ElasticERL {
 				}
 			}
 		}
+		System.out.println("This is the last element in the Elastic ERL");
 		return -1;
 	}
 	
@@ -202,6 +212,7 @@ public class ElasticERL {
 				}
 			}
 		}
+		System.out.println("This is the first element in the Elastic ERL");
 		return -1;
 	}
 	
