@@ -7,7 +7,8 @@ import java.util.Random;
  *  ElasticERL ADT that internally implements AVL Tree for datasets with size in range of 100,000 to 500,000 & 
  *  Arrays for datasets with size in the range of 100 to 99,999 -
  *  along with that we have stored the student id and student data as a key value pair in Hashmap
- * 
+ *  **  @author Sraddha Bhattacharjee(40221370)
+ * 	@author Sai Shrawan Malyala (40236492)
  * 
  */
 public class ElasticERL {
@@ -188,12 +189,12 @@ public class ElasticERL {
 		long[] sortedKeysList = allKeys();
 		for(int i=0; i<sortedKeysList.length; i++) {
 			if(sortedKeysList[i]== key) {
-				if(i+1 < size) {
+				if(i+1 < this.arraySize) {
 					return sortedKeysList[i+1];
 				}
 			}
 		}
-		System.out.println("This is the last element in the Elastic ERL");
+		System.out.println("This is the last element in the Elastic ERL or the element does not exist");
 		return -1;
 	}
 	
@@ -212,8 +213,8 @@ public class ElasticERL {
 				}
 			}
 		}
-		System.out.println("This is the first element in the Elastic ERL");
-		return -1;
+		System.out.println("This is the first element in the Elastic ERL or the element does not exist");
+		return -1; 
 	}
 	
 	/**

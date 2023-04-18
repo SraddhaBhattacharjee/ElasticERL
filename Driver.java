@@ -10,6 +10,10 @@ import java.nio.file.Paths;
 import java.util.Random;
 import java.util.Scanner;
 
+/**  @author Sraddha Bhattacharjee(40221370)
+* 	@author Sai Shrawan Malyala (40236492)
+*/
+
 public class Driver {
 	
 	private static String RandomHospData() {
@@ -35,7 +39,7 @@ public class Driver {
 		try {
 			
 			// Using benchmark file
-			String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file5_array_1002.txt";
+			String filePath = "C:\\Users\\Sraddha Bhattacharje\\Desktop\\WINTER 23\\Sraddha\\PPS\\Assignments\\Assignment 3\\ElasticERL-main\\Comp648_W23_Assg3_Needed_Files\\customfiles\\custom_test_file5_array_1002.txt";
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file4_AVL_100001.txt";
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file3_1261_array.txt";
 			//String filePath = "C:\\Users\\msais\\eclipse-workspace\\assigment3\\src\\Assignment3\\customfiles\\custom_test_file2_88_Array.txt";
@@ -47,7 +51,7 @@ public class Driver {
 			// Determining input size ElasticERL
 			int noOfEntries = (int) Files.lines(file).count();
 			
-			System.out.println("The file has " + noOfEntries + " entries.");
+			System.out.println("The file has " + noOfEntries + " entries."); 
 			
 			boolean goodToGo = true;
 			
@@ -94,6 +98,10 @@ public class Driver {
 			System.out.println("Next Key of "+ newKey + " ==> " +ERL1.nextKey(newKey));
 			
 			System.out.println("\n==========================================================================\n");
+			
+			int sampleKey = 33255588;
+			System.out.println("Prev Key of "+ sampleKey + " ==> " +ERL1.prevKey(sampleKey));
+			System.out.println("Next Key of "+ sampleKey + " ==> " +ERL1.nextKey(sampleKey));
 			
 			
 //			long[] allKeys = ERL1.allKeys();
